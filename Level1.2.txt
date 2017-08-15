@@ -1,0 +1,1 @@
+Zombie.create(name: "you", graveyard: "outside")
