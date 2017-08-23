@@ -1,0 +1,3 @@
+z = Zombie.find(3)
+z.graveyard = "Benny Hills Memorial"
+z.save
