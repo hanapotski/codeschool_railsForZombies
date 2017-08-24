@@ -1,0 +1,4 @@
+DESTROY
+Destroy the Zombie with an ID of 3.
+
+Zombie.delete(3)
