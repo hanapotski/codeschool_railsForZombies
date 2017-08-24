@@ -1,1 +1,4 @@
+CREATE
+Create a new Zombie.
+
 Zombie.create(name: "you", graveyard: "outside")

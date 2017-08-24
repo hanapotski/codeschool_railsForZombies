@@ -1,1 +1,4 @@
+FIND II
+Find the last Zombie in the database, but don't use IDs
+
 Zombie.last

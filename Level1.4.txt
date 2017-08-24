@@ -1,1 +1,4 @@
+QUERY
+Find all Zombies ordered by their names.
+
 Zombie.order(:name)
