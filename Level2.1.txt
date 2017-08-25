@@ -1,0 +1,5 @@
+CREATE MODEL
+Define a Zombie model.
+
+class Zombie < ActiveRecord::Base
+end
