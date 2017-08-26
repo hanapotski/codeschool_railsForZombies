@@ -1,0 +1,6 @@
+VALIDATIONS I
+Add a validation that checks for the presence of a Zombie's name
+
+class Zombie < ActiveRecord::Base
+  validates_presence_of :name
+end
