@@ -1,0 +1,159 @@
+DEEP IN THE CRUD
+
+Hash
+- series of key value pairs
+- multiple keys and values surrounded by {}
+
+Hash Recipe: variable = { key: value }
+
+*Single key & value
+b = { id: 3 }
+
+*Multiple keys & values
+b = { id: 3,
+ status: "I just ate some delicious brains",
+ zombie: "Jim" }
+
+ keys
+ - symbols
+
+Read Value
+b[:status]
+b[:zombie]
+
+concatenate
+b[:zombie] + " said " + b[:status]
+
+read recipe: variable[:key] => value
+
+*Retrieve the Tweet object with id = 3
+t = Tweet.find(3)
+
+Tweet
+- access lowercase and pluralized table name in database
+
+.find(3)
+- call method on the tweet
+- fetch the tweet with id of 3 and store in a variable
+
+alternate syntax
+t[:id] => puts t.id
+t[:status] => puts t.status
+t[:zombie] => puts t.zombie
+
+**most rails app use dot syntax
+
+W = Weapon.find(1)
+
+CRUD
+Create, Read, Update, Delete
+* Rails takes care of the id
+
+>Create
+Recipe:
+t = TableName.new
+t.key = value
+t.save
+
+t = Tweet.new
+t.status = "I <3 brains."
+t.save
+
+Recipe:
+t = TableName.new(hash)
+t.save
+
+t = Tweet.new(
+ status: "I <3 brains",
+ zombie: "Jim")
+t.save
+
+Recipe:
+TableName.create(hash)
+
+Tweet.create(status: "I <3
+brains", zombie: "Jim")
+
+
+>Read
+Tweet.find(3)
+- Returns a single tweet with id of 3
+
+Tweet.find(3, 4, 5)
+-  Returns an array of tweets, id of 3, 4, or 5
+
+Tweet.first
+- Returns the first tweet
+
+Tweet.last
+- Returns the last tweet
+
+Tweet.all
+- Returns all the tweets
+
+Tweet.count
+- Returns total number of tweets
+
+Tweet.order(:zombie)
+- Returns all tweets, ordered by zombies
+
+Tweet.limit(10)
+- Returns the first
+
+Tweet.where(zombie: "ash")
+- Returns all tweets from zombie named ‘ash’
+
+*Method Chaining
+- combine any of these read methods together to add constraints
+>Tweet.where(zombie: "ash").order(:status).limit(10)
+- Returns only tweets from zombie ‘ash’ordered by status
+only the first 10
+>Tweet.where(zombie: "ash").first
+- Returns only tweets from ‘ash’ just the first one
+
+Update
+Recipe:
+t = TableName.find(id)
+t.key = value
+t.save
+
+t = Tweet.find(3)
+t.zombie = "EyeballChomper"
+t.save
+
+Recipe:
+t = TableName.find(id)
+t.attributes = hash
+t.save
+
+t = Tweet.find(2)
+t.attributes = {
+ status: "Can I munch your eyeballs?",
+ zombie: "EyeballChomper" }
+t.save
+
+Recipe:
+t = Tweet.find(2)
+t = TableName.update(hash)
+
+t = Tweet.find(2)
+t.update(
+ status: "Can I munch your eyeballs?",
+ zombie: "EyeballChomper")
+
+
+Delete
+Recipe:
+t = Table.find(id)
+t.destroy
+
+t = Tweet.find(3)
+t.destroy
+
+Recipe:
+TableName.find(id).destroy
+
+Tweet.find(2).destroy
+
+Recipe:
+Tweet.destroy_all
