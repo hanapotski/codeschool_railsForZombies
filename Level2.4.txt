@@ -1,0 +1,8 @@
+VALIDATIONS III
+Validate both the uniqueness and the presence of a Zombie's name on a single line, using the new validation syntax.
+
+class Zombie < ActiveRecord::Base
+  validates :name,
+  presence: true
+  uniqueness: true
+end
