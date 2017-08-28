@@ -1,0 +1,6 @@
+VALIDATIONS II
+Add a validation that checks for the uniqueness of a Zombie's name.
+
+class Zombie < ActiveRecord::Base
+  validates_uniqueness_of :name
+end
