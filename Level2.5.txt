@@ -1,0 +1,6 @@
+BELONGS TO
+A Weapon belongs to a Zombie. Create that relationship.
+
+class Weapon < ActiveRecord::Base
+  belongs_to :zombie
+end
