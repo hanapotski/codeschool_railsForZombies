@@ -1,0 +1,5 @@
+RELATIONSHIP FIND
+Assuming the models and relationships are properly defined, find all the weapons that belong to Zombie 'Ashley'.
+
+ashley = Zombie.find(1)
+ashley.weapons
