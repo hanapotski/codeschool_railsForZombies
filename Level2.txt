@@ -1,0 +1,126 @@
+LIFEBLOOD OF THE APP
+
+MODEL
+How Rails application communicates with a data store
+
+Routing
+Application Stack
+
+>Models
+t = Tweet.find(3)
+app/models/tweet.rb
+Tweet = model
+
+class Tweet < ActiveRecord::Base
+
+end
+- maps the class to the table which has the lowercase plural name tweets
+
+Tweet.find(3)
+- when we call find(3) on Tweet class(model), it goes looking on the tweets table
+- looks for instance of Tweet #3 => t variable
+
+* New tweet saved without values
+- will create  new tweet with blank status and zombie
+
+VALIDATIONS
+app/models/tweet.rb
+validates_presence_of :status
+
+t = Tweet.new
+t.save
+t.errors.messages
+t.errors[:status][0]
+
+Rails model validations:
+validates_presence_of :status
+
+validates_numericality_of :fingers
+- to make sure something is a number
+
+validates_uniqueness_of :toothmarks
+- to make sure something is unique
+
+validates_confirmation_of :password
+- 2 password fields that need to be equal
+
+validates_acceptance_of :zombification
+- if there's a checkbox that needs to be checked, read terms of service
+
+validates_length_of :password, minimum: 3
+- to make sure characters entered is correct
+
+validates_format_of :email, with: /regex/i
+- specify format using regex
+
+validates_inclusion_of :age, in: 21..99
+- to make sure a field is between 2 values
+
+validates_exclusion_of :age, in: 0...21,
+ message: “Sorry you must be over 21”
+- to make sure a value is not included in what user entered
+
+Alternate syntax:
+validates :status, presence: true
+
+specify attribute to set validations on
+specify what to validate about it
+
+validates :status, presence: true
+validates :status, length: { minimum: 3 }
+
+//single line
+validates :status,
+presence: true,
+length: { minimum: 3 }
+
+presence: true
+uniqueness: true
+numericality: true
+length: { minimum: 0, maximum: 2000 }
+format: { with: /.*/ }
+acceptance: true
+confirmation: true
+
+
+Relational Database
+Relationships - tweets table, zombies table
+
+tweets > zombie_id
+zombies table
+
+- specify relationship in both directions
+
+has_many :tweets
+app/models/zombie.rb
+ActiveRecord::Base
+  has_many :tweets //lowercase plural
+end
+
+belongs_to
+app/models/tweet.rb
+class Tweet < ActiveRecord::Base
+  belongs_to :zombie //singular, tweet can only belong to 1 zombie
+end
+
+ash = Zombie.find(1) //fetch and assign to ash
+- instance of Zombie class with values of zombie ash
+
+t = Tweet.create(status: "Your eyelids taste like bacon.", zombie: ash)
+- send zombie object
+- rails takes care of mapping
+- returns new tweet with id, status and zombie_id
+
+ash.tweets.count //3
+ash.tweets //uses has_many association
+- will return an array with 3 instances of tweets belonging to ash
+
+database
+- will create a new row containing ash's new tweet
+
+Using Relationship
+t = Tweet.find(5)
+t.zombie
+- will return instance of a zombie
+
+t.zombie.name
