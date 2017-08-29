@@ -1,0 +1,11 @@
+LINKING IN BLOCKS
+250 POINTS
+In the each block, make the zombie's name link to its edit page.
+
+<ul>
+  <% zombies.each do |zombie| %>
+    <li>
+      <%= link_to zombie.name, edit_zombie_path(zombie) %>
+    </li>
+  <% end %>
+</ul>
