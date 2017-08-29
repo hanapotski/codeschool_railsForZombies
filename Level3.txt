@@ -1,4 +1,129 @@
 VIEW VISUAL REPRESENTATION
 
 View
-- 
+- User interface
+- what we see
+- visual representation of application
+
+Application Stack
+- View
+- Model
+
+zombie_twitter > app > views > zombies, tweets >
+index.html.erb => list all tweets
+show.html.erb => view a tweet
+
+ERB
+- embedded ruby code
+
+app/views/tweets/show.html.erb
+<% tweet = Tweet.find(1) %>
+
+<% %> - evaluate Ruby
+
+<h1><%= tweet.status %></h1>
+<%= %> - evaluate Ruby and print result
+
+DRY
+- Don't Repeat Yourself
+- don't write same code twice
+
+app/views/layouts/application.html.erb
+- boiler plate html code
+- header, footer
+- template
+
+<%= yield %>
+app/views/tweets/show.html.erb
+
+Create a link
+- rails helper link_to - parameters, link text, url
+- rails helper zombie_path, send zombie to linkt to
+<%= link_to tweet.zombie.name, zombie_path(tweet.zombie) %>
+
+Alternate syntax:
+<%= link_to tweet.zombie.name, tweet.zombie %>
+- specify zombie name link text, link the tweet.zombie
+recipe:
+<%= link_to text_to_show, model_instance %>
+
+
+Looking up Documentation link_to
+1. Look in the source
+- open editor and search for "def link_to"
+
+git clone http://github.com/rails/rails.git
+cd rails
+grep -rin 'def link_to'
+
+2. Look at api.rubyonrails.org
+- search for link_to
+
+app/views/tweets/show.html.erb
+confirm: "Are you sure?"
+
+app/views/layouts/application.html.erb
+- main layout
+
+app/views/tweets/index.html.erb
+- list all tweets
+- <% Loop through every tweet %>
+<% Tweet.all.each do |tweet| %>
+ <tr>
+   <td><%= tweet.status %> </td>
+   <td><%= tweet.zombie.name %> </td>
+ </tr>
+<% end %>
+- code block
+- go through each of the tweets in the array every time setting the current tweet to the tweet local variable in side the code block
+
+Tweet = class, model
+Tweet.all = call all method on Tweet model that returns an array of tweets
+tweet = single tweet from the array that got returned
+
+Create Links
+app/views/tweets/index.html.erb
+<% Tweet.all.each do |tweet| %>
+ <tr>
+   <td><%= link_to tweet.status, tweet %> </td> //use link_to helper, link text, specify tweet as 2nd argument, will link to show tweet page
+   <td><%= link_to tweet.zombie.name, tweet.zombie %> </td> //specify zombie name as link text, link to specific zombie to show that zombie
+ </tr>
+<% end %>
+
+Empty table?
+- show No Tweets Found
+
+<% tweets = Tweet.all %>
+<% tweets.each do |tweet| %>
+...
+<% if tweets.size == 0 %>
+  <em> No tweets found </em>
+<% end %>
+
+
+Edit and Delete Links
+<% tweets.all.each do |tweet| %>
+ <tr>
+   <td><%= tweet.status %> </td>
+   <td><%= tweet.zombie.name %> </td>
+   <td><%= link_to "Edit", edit_tweet_path(tweet) %></td> // link text, url
+   <td><%= link_to "Destroy", tweet, method: :delete %></td> //send in tweet to delete, specify method: :delete
+ </tr>
+<% end %>
+
+
+URL Generator Methods
+
+All Links For Tweets
+
+Action             Code              The URL
+List all tweets    tweets_path       /tweets
+New tweet form     new_tweet_path    /tweets/new
+
+tweet = Tweet.find(1) //These paths need a tweet
+
+Action             Code                        The URL
+Show a tweet       tweet Generated             /tweets/1
+Edit a tweet       edit_tweet_path(tweet)      /tweets/1/edit
+Delete a tweet     tweet, :method => :delete   /tweets/1
+Link Recipe: <%= link_to text_to_show, code %>
