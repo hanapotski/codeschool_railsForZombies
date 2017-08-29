@@ -1,0 +1,8 @@
+EACH BLOCKS
+Use an each block to print the names of all the zombies.
+
+<ul>
+  <% zombies.each do |zombie|  %>
+  <li><%= zombie.name  %></li>
+  <% end %>
+</ul>
