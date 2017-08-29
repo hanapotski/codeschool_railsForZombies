@@ -1,0 +1,7 @@
+LINKING
+Link to the zombie's show page. Use the zombie's name as the anchor text
+
+<p>
+<%= link_to zombie.name, zombie %>
+</p>
+
