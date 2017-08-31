@@ -1,0 +1,8 @@
+SHOW ACTION
+Create the show action for the ZombiesController which finds a Zombie based on params[:id]. Store the Zombie object to an instance variable named @zombie.
+
+class ZombiesController < ApplicationController
+  def show
+    @zombie = Zombie.find(params[:id])
+  end
+end
