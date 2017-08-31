@@ -1,0 +1,6 @@
+ROUTE MATCHING
+Create a custom route so that '/undead' will go to the undead action on the ZombiesController.
+
+TwitterForZombies::Application.routes.draw do
+  get 'undead' => 'zombies#undead'
+end
