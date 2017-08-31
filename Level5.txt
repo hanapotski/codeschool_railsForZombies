@@ -6,6 +6,7 @@ Application Stack
 - Models
 - Views
 
+
 Routes
 - In order to find paths
 <%= link_to "<link text>", <code> %>
