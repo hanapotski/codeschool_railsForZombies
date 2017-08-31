@@ -79,7 +79,7 @@ tweets/1.json
 respond_to do |format|
 format.html # show.html.erb
 format.json { render json: @tweet }
-format.xml { render xml: @tweet
+format.xml { render xml: @tweet }
 
 
 Controller Actions
