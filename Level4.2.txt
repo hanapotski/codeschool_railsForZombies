@@ -1,0 +1,12 @@
+RESPOND TO
+Finish the respond_to block so the action returns the XML of the @zombie record
+
+class ZombiesController < ApplicationController
+  def show
+    @zombie = Zombie.find(params[:id])
+
+    respond_to do |format|
+      format.xml { render xml: @zombie }
+    end
+  end
+end
