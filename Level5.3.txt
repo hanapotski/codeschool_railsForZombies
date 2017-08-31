@@ -1,0 +1,6 @@
+ROUTE REDIRECTING
+Create a redirect for '/undead' to '/zombies'.
+
+TwitterForZombies::Application.routes.draw do
+  get 'undead' => redirect('/zombies')
+end
