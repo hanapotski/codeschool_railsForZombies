@@ -1,0 +1,119 @@
+ROUTING THROUGH RAILS
+
+Application Stack
+- Route
+- Controllers
+- Models
+- Views
+
+Routes
+- In order to find paths
+<%= link_to "<link text>", <code> %>
+
+Action             Code                    The URL Generated
+List all           tweets tweets_path      /tweets
+New tweet form     new_tweet_path          /tweets/new
+
+tweet = Tweet.find(1) //These paths need a tweet
+
+=> actions
+
+- Creating what we like to call a “REST”FUL resource
+- config/routes.rb
+
+ZombieTwitter::Application.routes.draw do
+  resources :tweets
+end
+- gives all URL generators to use
+
+
+Customs Routes
+new_tweet
+tweets/new
+
+Controller name: Tweets
+Action name: new
+
+routes.rb
+get '/new_tweet' => 'tweets#new'
+- path, controller#action
+- new tweet view
+
+Named Routes
+/all
+- renders /tweets
+
+Controller name: Tweets
+Action name: index
+
+routes.rb
+get '/all' => 'tweets#index'
+
+get '/all' => 'tweets#index', as: 'all_tweets'
+<%= link_to "All Tweets", all_tweets_path %>
+
+
+/all
+- list all tweets
+=> /tweets
+redirect_to all -> tweets
+
+get '/all' => redirect('/tweets')
+get '/google' => redirect('http://www.google.com/')
+
+
+Root Route
+render =>
+root to: "tweets#index"
+- specify controller#action
+
+<%= link_to "All Tweets",root_path %>
+- url generator
+
+
+Route Parameters
+/app/controllers/tweets_controller.rb
+
+def index
+  if params[:zipcode]
+    @tweets = Tweet.where(zipcode: params[:zipcode])
+  else
+   @tweets = Tweet.all
+  end
+  respond_to do |format|
+   format.html # index.html.erb
+   format.xml { render xml: @tweets }
+   end
+ end
+
+
+ get '/local_tweets/:zipcode' => 'tweets#index'
+ referenced by params[:zipcode] in controller
+
+ get '/local_tweets/:zipcode'
+=> 'tweets#index', as: 'local_tweets'
+
+<%= link_to "Tweets in 32828", local_tweets_path(32828) %>
+
+
+Route Parameters
+/github, /envylabs
+- specific page
+
+/greggpollack
+get ':name' => 'tweets#index', as: 'zombie_tweets
+<%= link_to "Gregg", zombie_tweets_path('greggpollack') %>
+
+def index
+ if params[:name]
+   @zombie = Zombie.where(name: params[:name]).first
+   @tweets = @zombie.tweets
+ else
+   @tweets = Tweet.all
+ end
+end
+
+- no respond_to, all html
+
+/ash
+- only ash's tweet
