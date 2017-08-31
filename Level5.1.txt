@@ -1,0 +1,6 @@
+RESOURCE ROUTE
+Create a resources route for zombies.
+
+TwitterForZombies::Application.routes.draw do
+  resources :zombies
+end
