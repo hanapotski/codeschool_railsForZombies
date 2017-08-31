@@ -1,0 +1,6 @@
+ROOT ROUTE
+Create a root route to the ZombiesController index action.
+
+TwitterForZombies::Application.routes.draw do
+  root to: "zombies#index"
+end
