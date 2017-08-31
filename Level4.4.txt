@@ -1,0 +1,10 @@
+CONTROLLER BEFORE ACTION
+Add a before_action that calls a method to check if a Zombie has tweets. Redirect to zombies_path if the zombie doesn't have tweets, only on show.
+
+before_action :check_tweets, only: :show
+
+def check_tweets
+  if @zombie.tweets.size == 0
+    redirect_to zombies_path
+  end
+end
